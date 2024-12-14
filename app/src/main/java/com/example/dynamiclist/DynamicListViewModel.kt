@@ -1,5 +1,6 @@
 package com.example.dynamiclist
 
+import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 
 class DynamicListViewModel : ViewModel() {
@@ -25,4 +26,20 @@ class DynamicListViewModel : ViewModel() {
         ListDataModel(R.drawable.natures_image, "Item 9", "Description 9"),
         ListDataModel(R.drawable.natures_image, "Item 10", "Description 10"),
     )
+
+    var isBottomSheetVisible = mutableStateOf(false)
+
+    fun filterList(query: String): List<ListDataModel> {
+        return listOfItems.filter { it.title.contains(query, ignoreCase = true) }
+    }
+
+    fun calculateCharacterFrequency(list: List<String>): List<Pair<Char, Int>> {
+        val charCount = mutableMapOf<Char, Int>()
+        list.forEach { item ->
+            item.forEach { char ->
+                charCount[char] = charCount.getOrDefault(char, 0) + 1
+            }
+        }
+        return charCount.toList().sortedByDescending { it.second }
+    }
 }

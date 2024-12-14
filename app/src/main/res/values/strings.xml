@@ -2,4 +2,5 @@
     <string name="app_name">Dynamic List</string>
     <string name="search_txt">Search</string>
     <string name="list_item_txt">List Item 1</string>
+    <string name="title_activity_compose_main">ComposeMainActivity</string>
 </resources>
